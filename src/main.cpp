@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <format>
 #include <filesystem>
+#include <nlohmann/json.hpp>
 
 int main(int argc, char** argv) {
 	if (argc >= 2) {
