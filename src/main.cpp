@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
 			std::ofstream file("pkg.json");
 			file << "{\n\t\"packages\": {\n\t\n\t}\n}";
 			file.close();
+			// Check again
+			pkgjson_exists = std::filesystem::exists("pkg.json");
 		}
 		if (argc >= 3) {
 			if (command == "install") {
