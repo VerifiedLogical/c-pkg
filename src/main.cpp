@@ -4,6 +4,7 @@
 #include <format>
 #include <filesystem>
 #include <nlohmann/json.hpp>
+#include <fstream>
 
 bool pkgjson_exists = std::filesystem::exists("pkg.json");
 
