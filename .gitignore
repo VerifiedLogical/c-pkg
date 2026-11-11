@@ -1,0 +1,4 @@
+# Ignore the executable
+c++pkg
+# And ignore the pkg.json as it is only used for testing
+pkg.json
