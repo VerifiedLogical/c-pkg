@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 			std::println("Generating...");
 			std::ofstream file("pkg.json");
 			
-			file << "{\n\t\"packages\": [\n\t\n\t], \"compiler\": \"g++\"\n}";
+			file << "{\n\t\"packages\": [\n\t\n\t],\n\t\"compiler\": \"g++\",\n\t\"source_files\": []}";
 			
 			file.close();
 			// Check again
