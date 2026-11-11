@@ -22,6 +22,10 @@ void changeJsonFile(json& j, std::string file) {
 	json_file.close();
 }
 
+std::string sanitizeCmdParameters(std::string string) {
+	
+}
+
 int main(int argc, char** argv) {
 	if (pkgjson_exists == true) {
 		pkgjson = json::parse(std::ifstream{"pkg.json"});
