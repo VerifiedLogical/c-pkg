@@ -33,7 +33,9 @@ int main(int argc, char** argv) {
 			// Create pkg.json file
 			std::println("Generating...");
 			std::ofstream file("pkg.json");
-			file << "{\n\t\"packages\": [\n\t\n\t]\n}";
+			
+			file << "{\n\t\"packages\": [\n\t\n\t], \"compiler\": \"g++\"\n}";
+			
 			file.close();
 			// Check again
 			pkgjson_exists = std::filesystem::exists("pkg.json");
