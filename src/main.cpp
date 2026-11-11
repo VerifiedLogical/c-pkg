@@ -14,6 +14,14 @@ bool pkgjson_exists = std::filesystem::exists("pkg.json");
 json pkgjson;
 
 
+void changeJsonFile(json& j, std::string file) {
+	std::ofstream json_file(file, std::ios::trunc);
+
+	json_file << j.dump(4);
+
+	json_file.close();
+}
+
 int main(int argc, char** argv) {
 	if (pkgjson_exists == true) {
 		pkgjson = json::parse(std::ifstream{"pkg.json"});
@@ -49,6 +57,14 @@ int main(int argc, char** argv) {
 					
 				} else {
 					std::runtime_error("pkg.json doesn't exist! Run \033[38;2;0;255;0mc++pkg gen\033[0m");
+				}
+			}
+			if (command == "remove") {
+				if (pkgjson_exists == true) {
+					pkgjson["packages"][pkgjson["packages"].size()-std::stoi(argv[2])] = nullptr;
+					std::println("{}", pkgjson["packages"].size()-std::stoi(argv[2]));
+				} else {
+					std::runtime_error("pkg.json doesn't exist!");
 				}
 			}
 		}
