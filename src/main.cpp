@@ -7,12 +7,18 @@
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <stdexcept>
+#include <vector>
 
 using namespace nlohmann;
 
 bool pkgjson_exists = std::filesystem::exists("pkg.json");
 json pkgjson;
-
+std::vector<std::string> compilers{
+	"c++",
+	"gcc",
+	"g++",
+	"clang",
+};
 
 void changeJsonFile(json& j, std::string file) {
 	std::ofstream json_file(file, std::ios::trunc);
@@ -62,6 +68,25 @@ int main(int argc, char** argv) {
 			}
 		}
 		if (command == "compile") {
+			// Check if the compiler command is a recognized compiler program
+			bool unrecognizedCmd = false;
+			for (std::string& compilerCmd: compilers) {
+				if (compilerCmd == static_cast<std::string>(pkgjson["compiler"])) {
+					unrecognizedCmd = false;
+					break;
+				} else {
+					unrecognizedCmd = true;
+				}
+			}
+			if (unrecognizedCmd == true) {
+				std::string confirmation = "";
+				std::print("Compiler not recognized! Run anyways? {} (Y, n) \n> ", static_cast<std::string>(pkgjson["compiler"]));
+				std::getline(std::cin, confirmation);
+				if (std::tolower(static_cast<char>(confirmation[0])) != 'y') {
+					std::println("Command aborted.");
+					return 0;
+				}
+			}
 			// Compile the project
 		}
 		if (argc >= 3) {
