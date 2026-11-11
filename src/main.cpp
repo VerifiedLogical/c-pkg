@@ -23,7 +23,17 @@ void changeJsonFile(json& j, std::string file) {
 }
 
 std::string sanitizeCmdParameters(std::string string) {
+	// Find && and | in the string so that no other code can run
 	
+	// Look for &&
+	if (string.find("&&") == std::string::npos) {
+		std::runtime_error("Cannot use \'&&\' in pkg.json for security reasons");
+	}
+
+	if (string.find("|") == std::string::npos) {
+		std::runtime_error("Cannot use \'|\' in pkg.json for security reasons");
+	}
+	return string;
 }
 
 int main(int argc, char** argv) {
