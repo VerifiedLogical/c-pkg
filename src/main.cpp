@@ -47,6 +47,9 @@ int main(int argc, char** argv) {
 				}
 			}
 		}
+		if (command == "compile") {
+			// Compile the project
+		}
 		if (argc >= 3) {
 			if (command == "install") {
 				std::println("{}", argv[2]);
