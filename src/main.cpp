@@ -38,6 +38,13 @@ int main(int argc, char** argv) {
 			// Check again
 			pkgjson_exists = std::filesystem::exists("pkg.json");
 		}
+		if (command == "list") {
+			if (pkgjson_exists == true) {
+				for (int index = 0; index < pkgjson["packages"].size(); index++) {
+					std::println("{}: {}", index, static_cast<std::string>(pkgjson["packages"][index]));
+				}
+			}
+		}
 		if (argc >= 3) {
 			if (command == "install") {
 				std::println("{}", argv[2]);
